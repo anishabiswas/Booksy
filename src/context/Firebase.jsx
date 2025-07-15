@@ -11,7 +11,7 @@ const firebaseConfig = {
   messagingSenderId: "174567715488",
   appId: "1:174567715488:web:8a9e889cfa60679dac4fc5",
 };
-s;
+
 const firebaseApp = initializeApp(firebaseConfig);
 
 export const useFirebase = () => useContext(FirebaseContext); // custom hook(normal fun) to access the state of context

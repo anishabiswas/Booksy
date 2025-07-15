@@ -1,5 +1,10 @@
 import { createContext, useContext } from "react";
 import { initializeApp } from "firebase/app";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 
 const FirebaseContext = createContext(null);
 
@@ -13,9 +18,35 @@ const firebaseConfig = {
 };
 
 const firebaseApp = initializeApp(firebaseConfig);
+const auth = getAuth(firebaseApp);
 
 export const useFirebase = () => useContext(FirebaseContext); // custom hook(normal fun) to access the state of context
 
 export const FirebaseProvider = (props) => {
-  return <FirebaseContext.Provider>{props.children}</FirebaseContext.Provider>;
+  const createNewUser = (email, password) => {
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed up
+        const user = userCredential.user;
+        console.log("successfully achieved", user);
+        // ...
+      })
+      .catch((error) => {
+        console.error(error.message);
+      });
+  };
+
+  const signInUser = async (email, password) => {
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    return userCredential.user;
+  };
+  return (
+    <FirebaseContext.Provider value={{ createNewUser, signInUser }}>
+      {props.children}
+    </FirebaseContext.Provider>
+  );
 };

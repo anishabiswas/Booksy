@@ -1,6 +1,8 @@
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
+// import Container from "react-bootstrap/Container";
+// import Nav from "react-bootstrap/Nav";
+// import Navbar from "react-bootstrap/Navbar";
+// import Button from "react-bootstrap/Button";
+import { Button, Navbar, Nav, Container } from "react-bootstrap";
 import { Link } from "react-router";
 
 const MyNavbar = () => {
@@ -27,6 +29,11 @@ const MyNavbar = () => {
           <Nav.Link as={Link} to="/book/orders">
             Orders
           </Nav.Link>
+        </Nav>
+        <Nav className="ms-auto">
+          <Button variant="secondary" as={Link} to="/login">
+            Login
+          </Button>
         </Nav>
       </Container>
     </Navbar>

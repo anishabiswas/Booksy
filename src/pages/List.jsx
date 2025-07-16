@@ -1,12 +1,24 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { useFirebase } from "../context/Firebase";
 
 const List = () => {
   const [name, setName] = useState("");
   const [isbn, setIsbn] = useState("");
   const [price, setPrice] = useState("");
   const [coverPic, setCoverPic] = useState("");
+
+  const firebase = useFirebase();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await firebase.handleBookListing(name, isbn, price, coverPic);
+    setName("");
+    setIsbn("");
+    setPrice("");
+    setCoverPic("");
+  };
 
   return (
     <div className="container mt-3">
@@ -45,12 +57,11 @@ const List = () => {
           <Form.Label>Cover Pic</Form.Label>
           <Form.Control
             type="file"
-            onChange={(e) => setCoverPic(e.target.value)}
-            value={coverPic}
+            onChange={(e) => setCoverPic(e.target.files[0])}
           />
         </Form.Group>
 
-        <Button variant="primary" type="submit">
+        <Button variant="primary" type="submit" onClick={handleSubmit}>
           Create
         </Button>
       </Form>

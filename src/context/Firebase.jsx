@@ -8,6 +8,8 @@ import {
   signInWithPopup,
   onAuthStateChanged,
 } from "firebase/auth";
+import { getFirestore, addDoc, collection } from "firebase/firestore";
+import { uploadToCloudinary } from "../services/cloudinary";
 
 const FirebaseContext = createContext(null);
 
@@ -23,6 +25,7 @@ const firebaseConfig = {
 const firebaseApp = initializeApp(firebaseConfig);
 const auth = getAuth(firebaseApp);
 const googleProvider = new GoogleAuthProvider();
+const db = getFirestore(firebaseApp);
 
 export const useFirebase = () => useContext(FirebaseContext); // custom hook(normal fun) to access the state of context
 
@@ -65,9 +68,41 @@ export const FirebaseProvider = (props) => {
 
   const signinWithGoogle = () => signInWithPopup(auth, googleProvider);
 
+  const handleBookListing = async (name, isbn, price, coverPic) => {
+    try {
+      if (coverPic.size > 300 * 1024) {
+        alert("Please upload an image under 300 KB.");
+        return;
+      }
+
+      const imageUrl = await uploadToCloudinary(coverPic);
+      await addDoc(collection(db, "books"), {
+        name,
+        isbn,
+        price,
+        imageURL: imageUrl,
+        userID: user?.uid,
+        userEmail: user?.email,
+        displayName: user?.displayName,
+        photoURL: user?.photoURL,
+        createdAt: new Date(),
+      });
+
+      console.log("Book successfully added.");
+    } catch (err) {
+      console.error("Error in handleBookListing:", err);
+    }
+  };
+
   return (
     <FirebaseContext.Provider
-      value={{ createNewUser, signInUser, signinWithGoogle, isLoggedIn }}
+      value={{
+        createNewUser,
+        signInUser,
+        signinWithGoogle,
+        isLoggedIn,
+        handleBookListing,
+      }}
     >
       {props.children}
     </FirebaseContext.Provider>

@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import List from "./pages/List";
+import Home from "./pages/Home";
 
 //Router
 import { Routes, Route } from "react-router";
@@ -16,7 +17,7 @@ function App() {
     <>
       <MyNavbar />
       <Routes>
-        <Route path="/" element={<h1>Home page</h1>} />
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/book/list" element={<List />} />

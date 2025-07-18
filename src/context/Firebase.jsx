@@ -8,7 +8,15 @@ import {
   signInWithPopup,
   onAuthStateChanged,
 } from "firebase/auth";
-import { getFirestore, addDoc, collection, getDocs } from "firebase/firestore";
+import {
+  getFirestore,
+  addDoc,
+  collection,
+  getDocs,
+  doc,
+  getDoc,
+  Firestore,
+} from "firebase/firestore";
 import { uploadToCloudinary } from "../services/cloudinary";
 
 const FirebaseContext = createContext(null);
@@ -99,6 +107,11 @@ export const FirebaseProvider = (props) => {
     return querySnapshot;
   };
 
+  const getBookById = async (id) => {
+    const bookRef = doc(db, "books", id);
+    const result = await getDoc(bookRef);
+    return result;
+  };
   return (
     <FirebaseContext.Provider
       value={{
@@ -108,6 +121,7 @@ export const FirebaseProvider = (props) => {
         isLoggedIn,
         handleBookListing,
         getBooksFromTheList,
+        getBookById,
       }}
     >
       {props.children}

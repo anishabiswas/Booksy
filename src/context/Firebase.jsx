@@ -18,6 +18,7 @@ import {
   Firestore,
 } from "firebase/firestore";
 import { uploadToCloudinary } from "../services/cloudinary";
+import { getMessaging } from "firebase/messaging";
 
 const FirebaseContext = createContext(null);
 
@@ -34,6 +35,7 @@ const firebaseApp = initializeApp(firebaseConfig);
 const auth = getAuth(firebaseApp);
 const googleProvider = new GoogleAuthProvider();
 const db = getFirestore(firebaseApp);
+export const messaging = getMessaging(firebaseApp);
 
 export const useFirebase = () => useContext(FirebaseContext); // custom hook(normal fun) to access the state of context
 

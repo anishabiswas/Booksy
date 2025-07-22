@@ -4,7 +4,6 @@ import { useNavigate } from "react-router";
 
 const BookCard = (props) => {
   const navigate = useNavigate();
-  console.log(props);
 
   return (
     <Card style={{ width: "18rem", margin: "15px" }}>

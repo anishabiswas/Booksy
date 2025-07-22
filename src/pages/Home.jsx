@@ -19,7 +19,7 @@ const HomePage = () => {
       });
       console.log("token is generated ", token);
     } else if (permission === "denied") {
-      alert("you denied for the notif");
+      alert("you denied for the notification. Please, allow it.");
     }
   }
 

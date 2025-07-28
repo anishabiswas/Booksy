@@ -1,13 +1,13 @@
 import BookCard from "../components/Card.";
 import { useFirebase } from "../context/Firebase";
-import React, { useEffect, useState } from "react";
-import CardGroup from "react-bootstrap/CardGroup";
+import { useEffect, useState } from "react";
 import { getToken } from "firebase/messaging";
 import { messaging } from "../context/Firebase";
 
 const HomePage = () => {
   const firebase = useFirebase();
   const [books, setBooks] = useState([]);
+  const [mockBooks, setMockBooks] = useState([]);
 
   async function requestPermission() {
     const permission = await Notification.requestPermission();
@@ -29,20 +29,44 @@ const HomePage = () => {
   }, []);
 
   useEffect(() => {
+    //user entered firestore books
     const fetchBooks = async () => {
       const result = await firebase.getBooksFromTheList();
-      setBooks(result.docs);
+      const firestoreBooks = result.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setBooks(firestoreBooks);
     };
     fetchBooks();
   }, [firebase]);
+
+  useEffect(() => {
+    //Load mock books from public/mockapi.json
+    const fetchMockBooks = async () => {
+      const res = await fetch("/mockapi.json");
+      const data = await res.json();
+      setMockBooks(data);
+    };
+
+    fetchMockBooks();
+  }, []);
+
+  const allBooks = [...mockBooks, ...books];
+
   return (
     <div className="container mt-5">
       <h1 className="text-center">Welcome to Booksy</h1>
-      <CardGroup>
-        {books.map((book) => (
-          <BookCard key={book.id} id={book.id} {...book.data()} />
+      <div className="row">
+        {allBooks.map((book) => (
+          <div
+            className="col-md-3 d-flex justify-content-center mb-4"
+            key={book.id}
+          >
+            <BookCard {...book} />
+          </div>
         ))}
-      </CardGroup>
+      </div>
     </div>
   );
 };

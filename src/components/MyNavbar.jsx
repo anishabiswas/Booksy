@@ -30,9 +30,12 @@ const MyNavbar = () => {
             Orders
           </Nav.Link>
         </Nav>
-        <Nav className="ms-auto">
-          <Button variant="secondary" as={Link} to="/login">
+        <Nav>
+          <Button variant="secondary" as={Link} to="/login" className="ms-3">
             Login
+          </Button>
+          <Button variant="secondary" as={Link} to="/register" className="ms-3">
+            SignUp
           </Button>
         </Nav>
       </Container>

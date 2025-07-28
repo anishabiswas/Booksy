@@ -7,7 +7,7 @@ import Login from "./pages/Login";
 import List from "./pages/List";
 import Home from "./pages/Home";
 import BookDetailPage from "./pages/Detail";
-
+import ViewOrderPage from "./pages/ViewOrder";
 //Router
 import { Routes, Route } from "react-router";
 //Components
@@ -23,6 +23,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/book/list" element={<List />} />
         <Route path="/book/view/:bookId" element={<BookDetailPage />} />
+        <Route path="/book/orders" element={<ViewOrderPage />} />
       </Routes>
     </>
   );

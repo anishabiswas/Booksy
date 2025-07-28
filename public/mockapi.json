@@ -1,0 +1,110 @@
+[
+  {
+    "id": 1,
+    "title": "The Alchemist",
+    "author": "Paulo Coelho",
+    "genre": "Fiction",
+    "isbn": "0061122416",
+    "description": "A philosophical story about a boy's journey to find his treasure.",
+    "price": 349
+  },
+  {
+    "id": 2,
+    "title": "Can't Hurt Me",
+    "author": "David Goggins",
+    "genre": "Motivational",
+    "isbn": "1544512279",
+    "description": "Master your mind and defy the odds with this powerful memoir of grit and perseverance.",
+    "price": 399
+  },
+  {
+    "id": 3,
+    "title": "To Kill a Mockingbird",
+    "author": "Harper Lee",
+    "genre": "Classic",
+    "isbn": "9780061120084",
+    "description": "A novel about racial injustice in the Deep South.",
+    "price": 399
+  },
+  {
+    "id": 4,
+    "title": "Atomic Habits",
+    "author": "James Clear",
+    "genre": "Self-help",
+    "isbn": "0735211299",
+    "description": "An easy & proven way to build good habits and break bad ones.",
+    "price": 450
+  },
+  {
+    "id": 5,
+    "title": "The Subtle Art of Not Giving a F*ck",
+    "author": "Mark Manson",
+    "genre": "Self-help",
+    "isbn": "0062457713",
+    "description": "A counterintuitive approach to living a good life.",
+    "price": 320
+  },
+  {
+    "id": 6,
+    "title": "Rich Dad Poor Dad",
+    "author": "Robert T. Kiyosaki",
+    "genre": "Finance",
+    "isbn": "1612681131",
+    "description": "What the rich teach their kids about money that the poor and middle class do not.",
+    "price": 280
+  },
+  {
+    "id": 7,
+    "title": "Sapiens: A Brief History of Humankind",
+    "author": "Yuval Noah Harari",
+    "genre": "History",
+    "isbn": "0062316095",
+    "description": "A thought-provoking journey through the history of our species.",
+    "price": 499
+  },
+  {
+    "id": 8,
+    "title": "Deep Work",
+    "author": "Cal Newport",
+    "genre": "Productivity",
+    "isbn": "1455586692",
+    "description": "Rules for focused success in a distracted world.",
+    "price": 350
+  },
+  {
+    "id": 9,
+    "title": "The Psychology of Money",
+    "author": "Morgan Housel",
+    "genre": "Finance",
+    "isbn": "0857197681",
+    "description": "Timeless lessons on wealth, greed, and happiness.",
+    "price": 370
+  },
+  {
+    "id": 10,
+    "title": "Ikigai",
+    "author": "Francesc Miralles & Héctor García",
+    "genre": "Self-help",
+    "isbn": "0143130722",
+    "description": "The Japanese secret to a long and happy life.",
+    "price": 295
+  },
+  {
+    "id": 11,
+    "title": "Start With Why",
+    "author": "Simon Sinek",
+    "genre": "Business",
+    "isbn": "1591846447",
+    "description": "How great leaders inspire everyone to take action.",
+    "price": 420
+  },
+  {
+    "id": 12,
+    "title": "The Lean Startup",
+    "author": "Eric Ries",
+    "genre": "Entrepreneurship",
+    "isbn": "0307887898",
+    "description": "How today's entrepreneurs use continuous innovation to create radically successful businesses.",
+    "price": 460
+  }
+]

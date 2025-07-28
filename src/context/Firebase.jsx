@@ -78,7 +78,15 @@ export const FirebaseProvider = (props) => {
 
   const signinWithGoogle = () => signInWithPopup(auth, googleProvider);
 
-  const handleBookListing = async (name, isbn, price, coverPic) => {
+  const handleBookListing = async (
+    title,
+    author,
+    description,
+    genre,
+    isbn,
+    price,
+    coverPic
+  ) => {
     try {
       if (coverPic.size > 300 * 1024) {
         alert("Please upload an image under 300 KB.");
@@ -87,14 +95,16 @@ export const FirebaseProvider = (props) => {
 
       const imageUrl = await uploadToCloudinary(coverPic);
       await addDoc(collection(db, "books"), {
-        name,
+        title,
+        author,
+        description,
+        genre,
         isbn,
         price,
         imageURL: imageUrl,
         userID: user?.uid,
         userEmail: user?.email,
         displayName: user?.displayName,
-        photoURL: user?.photoURL,
         createdAt: new Date(),
       });
 
@@ -114,6 +124,18 @@ export const FirebaseProvider = (props) => {
     const result = await getDoc(bookRef);
     return result;
   };
+
+  const placeOrder = async (bookId, qty) => {
+    const collectionRef = collection(db, "books", bookId, "orders");
+    const result = await addDoc(collectionRef, {
+      userID: user?.uid,
+      userEmail: user?.email,
+      displayName: user?.displayName,
+      qty: Number(qty),
+    });
+    return result;
+  };
+
   return (
     <FirebaseContext.Provider
       value={{
@@ -124,6 +146,7 @@ export const FirebaseProvider = (props) => {
         handleBookListing,
         getBooksFromTheList,
         getBookById,
+        placeOrder,
       }}
     >
       {props.children}

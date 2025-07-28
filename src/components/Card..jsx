@@ -1,29 +1,26 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { useNavigate } from "react-router";
+import BookCover from "./BookCover";
 
-const BookCard = (props) => {
+const BookCard = ({ id, title, price, author, genre, imageURL, isbn }) => {
   const navigate = useNavigate();
 
   return (
-    <Card style={{ width: "18rem", margin: "15px" }}>
-      <Card.Img
-        variant="top"
-        src={props.imageURL}
-        alt={props.name}
-        style={{ height: "250px", objectFit: "cover" }}
-      />
+    <Card className="shadow-sm m-3" style={{ width: "25rem" }}>
+      {/* Cover Image */}
+      <BookCover isbn={isbn} imageURL={imageURL} title={title} />
+      {/* Card Body */}
       <Card.Body>
-        <Card.Title>{props.name}</Card.Title>
+        <Card.Title>{title}</Card.Title>
+        <Card.Subtitle className="mb-2 text-muted">by {author}</Card.Subtitle>
         <Card.Text>
-          This books name is {props.name} and sold by {props.displayName}.
+          <strong>Genre:</strong> {genre}
+          <br />
+          <strong>Price:</strong> ₹{price}
         </Card.Text>
-        <Card.Text>This book costs Rs.{props.price}</Card.Text>
-        <Button
-          variant="primary"
-          onClick={(e) => navigate(`/book/view/${props.id}`)}
-        >
-          More to know
+        <Button variant="primary" onClick={(e) => navigate(`/book/view/${id}`)}>
+          More Details
         </Button>
       </Card.Body>
     </Card>

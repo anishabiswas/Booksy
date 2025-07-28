@@ -7,7 +7,7 @@ const BookCard = ({ id, title, price, author, genre, imageURL, isbn }) => {
   const navigate = useNavigate();
 
   return (
-    <Card className="shadow-sm m-3" style={{ width: "25rem" }}>
+    <Card className="shadow-sm m-3" style={{ width: "28rem" }}>
       {/* Cover Image */}
       <BookCover isbn={isbn} imageURL={imageURL} title={title} />
       {/* Card Body */}

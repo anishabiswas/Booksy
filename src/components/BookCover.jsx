@@ -20,7 +20,13 @@ const BookCover = ({ isbn, imageURL, title }) => {
     <img
       src={cover || "/placeholder-img.avif"}
       alt={title}
-      className="w-full h-64 object-cover rounded shadow"
+      className="img-fluid rounded shadow"
+      style={{
+        width: "100%",
+        height: "350px",
+        objectFit: "cover",
+        objectPosition: "top", // optional for better alignment
+      }}
     />
   );
 };

@@ -19,7 +19,10 @@ const BookCard = ({ id, title, price, author, genre, imageURL, isbn }) => {
           <br />
           <strong>Price:</strong> ₹{price}
         </Card.Text>
-        <Button variant="primary" onClick={(e) => navigate(`/book/view/${id}`)}>
+        <Button
+          variant="primary"
+          onClick={(e) => navigate(`/book/details/${id}`)}
+        >
           More Details
         </Button>
       </Card.Body>

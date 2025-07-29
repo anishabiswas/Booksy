@@ -125,13 +125,16 @@ export const FirebaseProvider = (props) => {
     return result;
   };
 
-  const placeOrder = async (bookId, qty) => {
+  const placeOrder = async (bookId, qty, title, price) => {
     const collectionRef = collection(db, "books", bookId, "orders");
     const result = await addDoc(collectionRef, {
       userID: user?.uid,
       userEmail: user?.email,
-      displayName: user?.displayName,
+      title,
+      price,
       qty: Number(qty),
+      orderedAt: new Date(),
+      bookId,
     });
     return result;
   };
